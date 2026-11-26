@@ -1,0 +1,2 @@
+# Install only when SQL Server integration is enabled on Windows.
+pyodbc>=5.1,<6.0

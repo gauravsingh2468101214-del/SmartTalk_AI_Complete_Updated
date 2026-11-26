@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SmartTalk AI - Intelligent Company Product Catalog Assistant">
+    <meta name="theme-color" content="#29245e">
+    <title>SmartTalk AI | Product Assistant</title>
+   <link rel="stylesheet" href="./style.css">
+
+    <style>
+        .voice-playback-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            justify-content: flex-start;
+            margin: 12px 0 5px;
+        }
+
+        .voice-playback-controls button {
+            border: 1px solid #dedcf0;
+            border-radius: 9px;
+            padding: 9px 13px;
+            background: #fff;
+            color: #34304f;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .voice-playback-controls button:hover {
+            background: #6558e8;
+            color: white;
+            border-color: #6558e8;
+        }
+
+        .voice-playback-controls button:focus-visible {
+            outline: 3px solid #aaa2ff;
+            outline-offset: 2px;
+        }
+
+        #voice-playback-status {
+            text-align: left;
+            font-size: 11px;
+            color: #778097;
+            margin: 5px 0 0;
+        }
+
+        @media (max-width: 600px) {
+            .voice-playback-controls {
+                gap: 6px;
+            }
+
+            .voice-playback-controls button {
+                padding: 9px 10px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<main class="app-container">
+
+    <header class="app-header">
+        <div class="brand">
+            <div class="brand-logo">✦</div>
+            <div class="brand-info">
+                <h1>SmartTalk AI</h1>
+                <p>Intelligent Product Assistant</p>
+            </div>
+        </div>
+
+        <div class="header-status">
+            <span class="status-dot"></span>
+            <span>AI Assistant Online</span>
+        </div>
+    </header>
+
+    <section class="welcome-section">
+        <div class="welcome-label">YOUR COMPANY AI ASSISTANT</div>
+        <h2>Discover Products. Get Smarter Answers.</h2>
+        <p>
+            Explore company products, specifications, comparisons,
+            images and product demonstrations.
+        </p>
+    </section>
+
+    <section id="chat-box" class="chat-box"
+             aria-label="Chat conversation" aria-live="polite">
+
+        <div class="message assistant-message">
+            <div class="message-avatar">✦</div>
+            <div class="message-content">
+                <div class="message-sender">SmartTalk AI</div>
+                <div class="message-text">
+Hello! Welcome to SmartTalk AI.
+
+I can help you explore company products,
+specifications, models and comparisons.
+
+You can type your question or use the microphone
+to ask by voice.
+
+What would you like to know?
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="suggestions-section">
+        <div class="section-heading">
+            <span class="section-heading-icon">✧</span>
+            <span>Quick questions</span>
+        </div>
+
+        <div class="suggestion-list">
+            <button type="button" class="suggestion-chip"
+                data-question="Show me available product models">
+                Available models
+            </button>
+
+            <button type="button" class="suggestion-chip"
+                data-question="Show me WA-S108 product details">
+                Product details
+            </button>
+
+            <button type="button" class="suggestion-chip"
+                data-question="Compare WA-S108 and WA-S135">
+                Compare products
+            </button>
+        </div>
+    </section>
+
+    <section class="composer-section">
+        <div class="input-area">
+
+            <button type="button" id="mic-button"
+                class="icon-button"
+                title="Speak your question"
+                aria-label="Start voice input">
+                🎙️
+            </button>
+
+            <input type="text"
+                id="user-input"
+                placeholder="Ask anything about our products..."
+                autocomplete="off"
+                aria-label="Type your question">
+
+            <button type="button" id="send-button"
+                class="send-button"
+                aria-label="Send message">
+                <span>Send</span>
+                <span>➤</span>
+            </button>
+        </div>
+
+        <div class="input-options">
+            <span id="voice-status" class="voice-status">
+                Type or use your microphone
+            </span>
+
+            <label class="language-control" for="voice-language">
+                Voice:
+                <select id="voice-language">
+                    <option value="en-IN">English</option>
+                    <option value="hi-IN">Hindi</option>
+                </select>
+            </label>
+        </div>
+
+        <!-- VOICE PLAYBACK CONTROLS -->
+        <div class="voice-playback-controls">
+            <button type="button" id="voice-button">
+                🔊 Listen
+            </button>
+
+            <button type="button" id="pause-voice-button">
+                ⏸ Pause
+            </button>
+
+            <button type="button" id="resume-voice-button">
+                ▶ Resume
+            </button>
+
+            <button type="button" id="stop-voice-button">
+                ⏹ Stop
+            </button>
+
+            <button type="button" id="mute-voice-button">
+                🔇 Mute
+            </button>
+        </div>
+
+        <p id="voice-playback-status" aria-live="polite">
+            Voice ready
+        </p>
+    </section>
+
+    <section class="media-section" id="media-library-section">
+
+        <div class="media-heading">
+            <div>
+                <span class="media-eyebrow">COMPANY MEDIA</span>
+                <h2>Audio & Video Library</h2>
+                <p>Upload, manage and play your company media files.</p>
+            </div>
+            <div class="media-icon">▶</div>
+        </div>
+
+        <div class="video-upload-area">
+            <div class="upload-icon">♫</div>
+            <div class="upload-copy">
+                <strong>Add audio files</strong>
+                <span>MP3, WAV, OGG, M4A, AAC, FLAC and WEBM</span>
+            </div>
+
+            <label for="audio-input" class="upload-button">
+                Select audio
+            </label>
+
+            <input type="file" id="audio-input"
+                accept=".mp3,.wav,.ogg,.m4a,.aac,.flac,.webm,audio/*"
+                multiple hidden>
+        </div>
+
+        <div class="video-upload-area">
+            <div class="upload-icon">▶</div>
+            <div class="upload-copy">
+                <strong>Add product videos</strong>
+                <span>MP4, WebM, MOV, M4V, AVI and MKV</span>
+            </div>
+
+            <label for="video-input" class="upload-button">
+                Select videos
+            </label>
+
+            <input type="file" id="video-input"
+                accept=".mp4,.webm,.mov,.m4v,.avi,.mkv,video/*"
+                multiple hidden>
+        </div>
+
+        <div class="media-toolbar">
+            <input type="search" id="media-search"
+                placeholder="Search media files..."
+                aria-label="Search media files">
+
+            <select id="media-filter" aria-label="Filter media">
+                <option value="all">All media</option>
+                <option value="audio">Audio only</option>
+                <option value="video">Video only</option>
+            </select>
+
+            <button type="button" id="refresh-media-button"
+                class="footer-button">
+                ↻ Refresh
+            </button>
+        </div>
+
+        <p id="media-status" class="media-status" aria-live="polite">
+            Loading media library...
+        </p>
+
+        <div id="video-library" class="video-library">
+            <div class="video-empty-state">
+                <span>♫</span>
+                <p>Your media library will appear here</p>
+                <small>Upload audio or video files to get started.</small>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="media-analysis-section" aria-labelledby="media-analysis-title">
+        <div class="section-heading" id="media-analysis-title">
+            <span class="section-heading-icon">✧</span>
+            <span>AI Media Analysis</span>
+        </div>
+        <p class="media-analysis-intro">Analyze an image, transcribe audio, or review sampled video frames. These tools require an OpenAI API key in the private server configuration; video analysis also requires FFmpeg.</p>
+        <div class="media-analysis-grid">
+            <article class="analysis-card">
+                <h3>Image understanding</h3>
+                <input type="file" id="image-analysis-input" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp">
+                <input type="text" id="image-analysis-question" placeholder="What should I look for in this image?">
+                <button type="button" id="analyze-image-button" class="footer-button">Analyze image</button>
+                <p id="image-analysis-result" class="analysis-result" aria-live="polite"></p>
+            </article>
+            <article class="analysis-card">
+                <h3>Audio transcription</h3>
+                <input type="file" id="audio-analysis-input" accept=".mp3,.wav,.ogg,.m4a,.aac,.flac,.webm,audio/*">
+                <button type="button" id="transcribe-audio-button" class="footer-button">Transcribe audio</button>
+                <p id="audio-analysis-result" class="analysis-result" aria-live="polite"></p>
+            </article>
+            <article class="analysis-card">
+                <h3>Video understanding</h3>
+                <input type="file" id="video-analysis-input" accept=".mp4,.webm,.mov,.m4v,.avi,.mkv,video/*">
+                <input type="text" id="video-analysis-question" placeholder="What should I check in this video?">
+                <button type="button" id="analyze-video-button" class="footer-button">Analyze video</button>
+                <p id="video-analysis-result" class="analysis-result" aria-live="polite"></p>
+            </article>
+        </div>
+    </section>
+
+    <footer class="app-footer">
+        <p>SmartTalk AI · Company Product Knowledge Assistant</p>
+        <span class="footer-caption">
+            Powered by intelligent product knowledge
+        </span>
+    </footer>
+
+</main>
+
+<script src="./script.js"></script>
+</body>
+</html>
+

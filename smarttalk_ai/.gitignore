@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+.env.backup
+*.py[cod]
+media_library/audio/*
+!media_library/audio/.gitkeep
+media_library/video/*
+!media_library/video/.gitkeep
+uploads/*
+!uploads/.gitkeep

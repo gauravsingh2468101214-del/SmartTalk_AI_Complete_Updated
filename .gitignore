@@ -1,0 +1,69 @@
+﻿.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!.env.example
+
+.venv/
+**/.venv/
+venv/
+**/venv/
+node_modules/
+**/node_modules/
+__pycache__/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+**/.pytest_cache/
+dist/
+build/
+
+*.pdf
+**/*.pdf
+
+
+
+# Company and product images
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.svg
+*.gif
+
+
+# Backup files
+*.bak
+*backup*
+*before_pitch_fix*
+# Private configuration - contains credentials
+smarttalk_ai/configure_smarttalk.py
+
+# Private company product data
+smarttalk_ai/knowledge_base/catalog_text.json
+smarttalk_ai/knowledge_base/products.json
+smarttalk_ai/media_library/
+smarttalk_ai/company_pdfs/
+
+
+# Private catalog configuration
+smarttalk_ai/tools/catalog_config.py
+
+
+# Private catalog configuration
+smarttalk_ai/tools/catalog_config.py
+
+# Internal reports - keep private
+smarttalk_ai/AUDIT_REPORT.md
+smarttalk_ai/CATALOG_REVIEW.txt
+smarttalk_ai/TEST_REPORT.md
+website/OWNER_CHECKLIST.md
+website/SECURITY_AND_DEPLOYMENT.md
+CHANGE_REPORT_NEW_FEATURES.md
+TEST_REPORT.md
+
+
+
+# Internal catalog audit script
+smarttalk_ai/audit_pdf_models.py
